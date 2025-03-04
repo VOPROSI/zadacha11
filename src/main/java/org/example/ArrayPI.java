@@ -35,7 +35,8 @@ public class ArrayPI {
                     array[i] = input.nextInt();
                     break;
                 } else {
-                    System.out.println("Ошибка: Введите целое число.");
+                    System.out.println("Ошибка: Вводите целые числа.");
+                    array = new int[size];
                     input.next();
                 }
             }
