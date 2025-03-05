@@ -5,7 +5,7 @@ import org.example.db.TableManager;
 import java.util.Scanner;
 
 public class Main {
-    private static String tableName;
+    public static String tableName;
     private static boolean tableChosen = false;
 
     public static void main(String[] args) {

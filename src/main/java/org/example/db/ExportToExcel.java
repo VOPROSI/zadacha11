@@ -10,19 +10,10 @@ import java.io.IOException;
 
 public class ExportToExcel {
 
-    final private static String URL = "jdbc:postgresql://localhost:5432/amigo";
-    final private static String USER = "postgres";
-    final private static String PASSWORD = "12345";
+    private final Connection conn;
 
-    protected static Connection conn;
-
-    static {
-        try {
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            System.out.println("Ошибка подключения");
-            System.exit(228);
-        }
+    public ExportToExcel() {
+        this.conn = DbModule.getConnection();
     }
 
     public void exportData(String tableName) {
