@@ -3,6 +3,7 @@ package org.example;
 import org.example.db.InsertTable;
 import java.util.Scanner;
 
+
 public class ArrayPI {
     protected int[] array;
 
