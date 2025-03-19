@@ -4,14 +4,12 @@ import org.example.db.InsertTable;
 import java.util.Scanner;
 
 
-import java.util.Scanner;
-
-public class ArrayPI {
+public class ValidateTriangle {
     private double side1;
     private double side2;
     private double side3;
 
-    public ArrayPI() {
+    public ValidateTriangle() {
         Scanner input = new Scanner(System.in);
         boolean isValid = false;
 

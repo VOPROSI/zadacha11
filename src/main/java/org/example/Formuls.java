@@ -21,13 +21,13 @@ public final class Formuls {
     }
 
     public double Square() {
-        double p = (side1 + side2 + side3) / 2; // Полупериметр
+        double p = (side1 + side2 + side3) / 2;
         return Math.sqrt(p * (p - side1) * (p - side2) * (p - side3));
     }
 
     public boolean isRectangle() {
         double[] sides = {side1, side2, side3};
-        java.util.Arrays.sort(sides); // Сортируем стороны: [наименьшая, средняя, наибольшая]
+        java.util.Arrays.sort(sides);
         return Math.pow(sides[2], 2) == Math.pow(sides[0], 2) + Math.pow(sides[1], 2);
     }
 

@@ -29,12 +29,12 @@ public class FactorialCalculator {
         int num;
         while (true) {
             System.out.print("Введите положительное целое число: ");
-            String input = scanner.nextLine().trim(); // Читаем строку и убираем пробелы
+            String input = scanner.nextLine().trim();
 
             try {
-                num = Integer.parseInt(input); // Пробуем преобразовать в int
+                num = Integer.parseInt(input);
                 if (num > 0) {
-                    return num; // Если число положительное, возвращаем его
+                    return num;
                 } else {
                     System.out.println("Ошибка: Число должно быть больше 0!");
                 }
