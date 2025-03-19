@@ -4,55 +4,61 @@ import org.example.db.InsertTable;
 import java.util.Scanner;
 
 
+import java.util.Scanner;
+
 public class ArrayPI {
-    protected int[] array;
+    private double side1;
+    private double side2;
+    private double side3;
 
     public ArrayPI() {
         Scanner input = new Scanner(System.in);
+        boolean isValid = false;
 
-        int size = 0;
-        boolean exit = false;
-        while (!exit) {
-            System.out.print("Введите количество чисел для ввода: ");
-            try{
-                size = Integer.parseInt(input.nextLine());
-                if (size <= 0) {
-                    System.out.println("Вы ввели отрицательное число или 0, попробуйте снова!");
-                    exit = false;
+        while (!isValid) {
+            System.out.print("Введите 3 стороны треугольника через пробел: ");
+            String line = input.nextLine().trim();
+            String[] parts = line.split("\\s+");
+
+            if (parts.length != 3) {
+                System.out.println("Ошибка: необходимо ввести ровно 3 числа!");
+                continue;
+            }
+
+            try {
+                this.side1 = Double.parseDouble(parts[0]);
+                this.side2 = Double.parseDouble(parts[1]);
+                this.side3 = Double.parseDouble(parts[2]);
+
+                if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
+                    System.out.println("Ошибка: стороны должны быть положительными числами!");
+                    continue;
                 }
-                else exit = true;
-            }
-            catch (NumberFormatException e) {
-                System.out.println("Вы ввели некорректное число!");
-            }
-        }
 
-        array = new int[size];
-        System.out.println("Введите " + size + " целых чисел:");
-
-        for (int i = 0; i < size; i++) {
-            while (true) {
-                if (input.hasNextInt()) {
-                    array[i] = input.nextInt();
-                    break;
+                if (side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1) {
+                    isValid = true;
                 } else {
-                    System.out.println("Ошибка: Вводите целые числа.");
-                    array = new int[size];
-                    input.next();
+                    System.out.println("Ошибка: треугольник с такими сторонами невозможен!");
                 }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: введите корректные числа!");
             }
         }
     }
 
-    public void printArray() {
-        for (int num : array) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+    public void printData(){
+        System.out.println("Треугольник принят: a = " + side1 + ", b = " + side2 + ", c = " + side3);
     }
 
     public void saveToDatabase(String tableName) {
         InsertTable insertTable = new InsertTable();
-        insertTable.insertNumbers(tableName, array);
+        Formuls formuls = new Formuls(side1, side2, side3);
+
+        double perimeter = formuls.Perimetr();
+        double square = formuls.Square();
+        boolean isRectangular = formuls.isRectangle();
+
+        insertTable.insertTriangle(tableName, side1, side2, side3, perimeter, square, isRectangular);
     }
 }
